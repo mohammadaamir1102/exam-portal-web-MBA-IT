@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  constructor(private userService: UserService, private snack: MatSnackBar) {}
+  constructor(private userService: UserService, private snack: MatSnackBar) { }
 
   public user = {
     username: '',
@@ -20,13 +20,21 @@ export class SignupComponent implements OnInit {
     phone: '',
   };
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   formSubmit() {
     console.log(this.user);
     if (this.user.username == '' || this.user.username == null) {
       // alert('User is required !!');
       this.snack.open('Username is required !! ', '', {
+        duration: 3000,
+      });
+      return;
+    }
+
+    if (this.user.username.length < 6) {
+      // alert('User is required !!');
+      this.snack.open('Username more than 6 characters ! ', '', {
         duration: 3000,
       });
       return;
@@ -39,6 +47,75 @@ export class SignupComponent implements OnInit {
       });
       return;
     }
+
+    if (this.user.password.length < 6) {
+      // alert('User is required !!');
+      this.snack.open('Password must be at least 6 alphanumeric ! ', '', {
+        duration: 3000,
+      });
+      return;
+    }
+
+    if (this.user.firstName == '' || this.user.firstName == null) {
+      // alert('User is required !!');
+      this.snack.open('First Name is required !! ', '', {
+        duration: 3000,
+      });
+      return;
+    }
+
+    if (this.user.firstName.length < 3) {
+      // alert('User is required !!');
+      this.snack.open('First Name must be at least 3 characters ! ', '', {
+        duration: 3000,
+      });
+      return;
+    }
+
+    if (this.user.lastName == '' || this.user.lastName == null) {
+      // alert('User is required !!');
+      this.snack.open('Last Name is required !! ', '', {
+        duration: 3000,
+      });
+      return;
+    }
+
+    if (this.user.lastName.length < 3) {
+      // alert('User is required !!');
+      this.snack.open('Last Name must be at least 3 characters ! ', '', {
+        duration: 3000,
+      });
+      return;
+    }
+
+    if (this.user.email == '' || this.user.email == null) {
+      // alert('User is required !!');
+      this.snack.open('Email is required !! ', '', {
+        duration: 3000,
+      });
+      return;
+    }
+
+    if (this.user.email.indexOf("@gmail.com") == -1) {
+      // alert('User is required !!');
+      this.snack.open('Please insert valid mail ! ', '', {
+        duration: 3000,
+      });
+      return;
+    }
+
+
+
+    if (this.user.phone == '' || this.user.phone == null) {
+      // alert('User is required !!');
+      this.snack.open('Phone no is required !! ', '', {
+        duration: 3000,
+      });
+      return;
+    }
+
+  
+
 
     //validate
 
